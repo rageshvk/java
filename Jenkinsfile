@@ -20,7 +20,9 @@ pipeline{
         stage(deploy){
             steps{
                 sh """
-                sudo docker run -d --name tomcal -p 8090:8080  tomcat"""
+                sudo docker run -d --name tomcal -p 8090:8080  tomcat
+                   sudo docker run -d --name tomcat -p 8090:8080  tomcat
+                cp $WORKSPACE/demo/target/*.war tomcat:/usr/local/tomcat/webapps"""
             }
         }
 
