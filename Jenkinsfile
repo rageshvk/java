@@ -20,7 +20,7 @@ pipeline{
         stage(deploy){
             steps{
                 sh """
-                docker run -d --name tomcal -p 8090:8080  tomcat"""
+                sudo docker run -d --name tomcal -p 8090:8080  tomcat"""
             }
         }
 
