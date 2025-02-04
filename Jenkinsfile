@@ -16,7 +16,6 @@ pipeline{
         stage('build'){
             steps{
                 sh 'mvn clean package'
-                echo "hello $NAME and value is ${params.val}"
             }
             post{
                 success{
@@ -27,15 +26,28 @@ pipeline{
         stage('test'){
             parallel{
                 stage('testA'){
+                    agent {
+                        label 'node1'
+                    }
                     steps{
                         echo "this is stage A"
                     }
                 }
                 stage('testB'){
+                    agent {
+                        label 'node2'
+                    }
                     steps{
                         echo "this is stage B"
                     }
                 }
+            }
+        }
+
+        stages('deployee'){
+            dir('demo/target')
+            {
+                stash name: 'build-war', includes: '*.war'
             }
         }
         // stage(deploy){
