@@ -8,11 +8,14 @@ pipeline{
     environment{
         NAME='amal'
     }
+    parameters {
+        string defaultValue: 'abcd', name: 'val'
+    }
     stages{
         stage('build'){
             steps{
                 sh 'mvn clean package'
-                echo "hello $NAME"
+                echo "hello $NAME and value is ${params.val}"
             }
             post{
                 success{
