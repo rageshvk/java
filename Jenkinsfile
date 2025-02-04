@@ -34,7 +34,7 @@ pipeline{
                
                 }
         stage("on prod"){
-            when{expression{params.select-env=='dev-node1'}}
+            // when{expression{params.select-env=='dev-node1'}}
             steps{
                 echo "helloooooooooooooooooooooooo"
                 sh "mkdir stashed"
