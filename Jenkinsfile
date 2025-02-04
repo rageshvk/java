@@ -43,10 +43,13 @@ pipeline{
                 }
 
                 stage('deployee'){
-                    dir('demo/target')
+                    steps{
+                          dir('demo/target')
                     {
                         stash name: 'build-war', includes: '*.war'
+                    }   
                     }
+               
                 }
             }
         }
