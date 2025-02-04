@@ -6,7 +6,7 @@ pipeline{
         maven 'maven'
     }
     parameters {
-        choice choices: ['dev-node1', 'prod'], name: 'select-env'
+        choice choices: ['dev-node1', 'prod'], name: 'select_env'
     }
     environment{
         NAME='amal'
@@ -34,7 +34,7 @@ pipeline{
                
                 }
         stage("on prod"){
-            // when{expression{params.select-env=='dev-node1'}}
+            when{expression{params.select_env=='dev-node1'}}
             steps{
                 echo "helloooooooooooooooooooooooo"
                 sh "mkdir stashed"
