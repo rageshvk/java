@@ -43,7 +43,7 @@ pipeline{
                     steps{
                           dir('demo/target/')
                     {
-                        stash name: 'build-war', includes: '*.war'
+                        stash name: 'build-war', includes: 'demo/target/*.war'
                     }   
                     }
                
