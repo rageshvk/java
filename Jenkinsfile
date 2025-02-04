@@ -37,7 +37,7 @@ pipeline{
             when{expression{params.select-env=='dev-node1'}}
             steps{
                 sh "mkdir stashed"
-                unstash 'stashed'
+                unstash 'build-war'
             }
         }
         stage('test'){
