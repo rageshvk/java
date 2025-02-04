@@ -21,13 +21,13 @@ pipeline{
             }
         }
 
-        stage(deploy){
-            steps{
-                sh """
-                sudo docker run -d --name tomcat -p 8090:8080  tomcat
-                sudo docker cp $WORKSPACE/target/*.war tomcat:/usr/local/tomcat/webapps"""
-            }
-        }
+        // stage(deploy){
+        //     steps{
+        //         sh """
+        //         sudo docker run -d --name tomcat -p 8090:8080  tomcat
+        //         sudo docker cp $WORKSPACE/target/*.war tomcat:/usr/local/tomcat/webapps"""
+        //     }
+        // }
 
     }
 }
