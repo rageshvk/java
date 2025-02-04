@@ -36,10 +36,13 @@ pipeline{
         stage("on prod"){
             when{expression{params.select_env=='prod'}}
             steps{
+                timeout(time:5, unit:'DAYS'){
+                    input message:'approve deployment in prod'
                 echo "helloooooooooooooooooooooooo"
                 sh "rm -rf stashed"
                 sh "mkdir stashed"
                 unstash 'build-war'
+                }
             }
         }
         stage('test'){
