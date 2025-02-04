@@ -34,7 +34,7 @@ pipeline{
                
                 }
         stage("on prod"){
-            when{expression{params.select_env=='prod'}}
+            when{expression{params.select_env=='dev-node1'}}
             steps{
                 timeout(time:5, unit:'DAYS'){
                     input message:'approve deployment in prod'
