@@ -34,9 +34,6 @@ pipeline{
                     }
                 }
                 stage('testB'){
-                    agent {
-                        label 'node2'
-                    }
                     steps{
                         echo "this is stage B"
                     }
