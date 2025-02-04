@@ -5,12 +5,13 @@ pipeline{
     tools{
         maven 'maven'
     }
-    environment{
-        NAME='amal'
-    }
     parameters {
         string defaultValue: 'abcd', name: 'val'
     }
+    environment{
+        NAME='amal'
+    }
+    
     stages{
         stage('build'){
             steps{
