@@ -6,7 +6,7 @@ pipeline{
         maven 'maven'
     }
     parameters {
-        string defaultValue: 'abcd', name: 'val'
+        choice choices: ['dev-node1', 'prod'], name: 'select-env'
     }
     environment{
         NAME='amal'
