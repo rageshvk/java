@@ -24,7 +24,20 @@ pipeline{
                 }
             }
         }
-
+        stage('test'){
+            parallel{
+                stage('testA'){
+                    steps{
+                        echo "this is stage A"
+                    }
+                }
+                stage('testB'){
+                    steps{
+                        echo "this is stage B"
+                    }
+                }
+            }
+        }
         // stage(deploy){
         //     steps{
         //         sh """
