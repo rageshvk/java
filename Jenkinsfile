@@ -33,6 +33,13 @@ pipeline{
                     }
                
                 }
+        stage("on prod"){
+            when{expression{params.select-env=='dev-node1'}}
+            steps{
+                sh "mkdir stashed"
+                unstash 'stashed'
+            }
+        }
         stage('test'){
             parallel{
                 stage('testA'){
