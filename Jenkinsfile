@@ -23,6 +23,15 @@ pipeline{
                 }
             }
         }
+        stage('deployee'){
+            steps{
+                          dir('demo/target/')
+                    {
+                        stash name: 'build-war', includes: '/home/ubuntu/jenkins/workspace/demo/target/java-tomcat-maven-example.war'
+                    }   
+                    }
+               
+                }
         stage('test'){
             parallel{
                 stage('testA'){
@@ -39,15 +48,7 @@ pipeline{
                     }
                 }
 
-                stage('deployee'){
-                    steps{
-                          dir('demo/target/')
-                    {
-                        stash name: 'build-war', includes: '/home/ubuntu/jenkins/workspace/demo/target/java-tomcat-maven-example.war'
-                    }   
-                    }
-               
-                }
+ 
             }
         }
 
