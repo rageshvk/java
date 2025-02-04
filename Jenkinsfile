@@ -37,6 +37,7 @@ pipeline{
             when{expression{params.select_env=='dev-node1'}}
             steps{
                 echo "helloooooooooooooooooooooooo"
+                sh "rm -rf stashed"
                 sh "mkdir stashed"
                 unstash 'build-war'
             }
