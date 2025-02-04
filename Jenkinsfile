@@ -12,8 +12,6 @@ pipeline{
         stage('build'){
             steps{
                 sh 'mvn clean package'
-            }
-            steps{
                 echo "hello $NAME"
             }
             post{
