@@ -34,7 +34,7 @@ pipeline{
                
                 }
         stage("on prod"){
-            when{expression{params.select_env=='dev-node1'}}
+            when{expression{params.select_env=='prod'}}
             steps{
                 echo "helloooooooooooooooooooooooo"
                 sh "rm -rf stashed"
