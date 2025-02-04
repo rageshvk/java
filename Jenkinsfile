@@ -28,7 +28,7 @@ pipeline{
                     sh 'mvn test'
                           dir('demo/target/')
                     {
-                        stash name: 'build-war', includes: 'demo/target/*.war'
+                        stash name: 'build-war', includes: 'target/*.war'
                     }   
                     }
                
