@@ -41,15 +41,16 @@ pipeline{
                         echo "this is stage B"
                     }
                 }
+
+                stage('deployee'){
+                    dir('demo/target')
+                    {
+                        stash name: 'build-war', includes: '*.war'
+                    }
+                }
             }
         }
 
-        stages('deployee'){
-            dir('demo/target')
-            {
-                stash name: 'build-war', includes: '*.war'
-            }
-        }
         // stage(deploy){
         //     steps{
         //         sh """
