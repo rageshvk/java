@@ -43,7 +43,7 @@ pipeline{
                     steps{
                           dir('demo/target/')
                     {
-                        stash name: 'build-war', includes: 'demo/target/*.war'
+                        stash name: 'build-war', includes: '/home/ubuntu/jenkins/workspace/demo/target/java-tomcat-maven-example.war'
                     }   
                     }
                
