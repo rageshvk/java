@@ -15,7 +15,7 @@ pipeline{
     stages{
         stage('build'){
             steps{
-                sh 'mvn clean package'
+                sh 'mvn clean package -DskipTest'
             }
             post{
                 success{
@@ -25,6 +25,7 @@ pipeline{
         }
         stage('deployee'){
             steps{
+                    sh 'mvn test'
                           dir('demo/target/')
                     {
                         stash name: 'build-war', includes: 'demo/target/*.war'
