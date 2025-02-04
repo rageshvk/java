@@ -5,10 +5,16 @@ pipeline{
     tools{
         maven 'maven'
     }
+    environment{
+        NAME='amal'
+    }
     stages{
         stage('build'){
             steps{
                 sh 'mvn clean package'
+            }
+            steps{
+                echo "hello $NAME"
             }
             post{
                 success{
