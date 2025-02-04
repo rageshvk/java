@@ -26,9 +26,9 @@ pipeline{
         stage('deployee'){
             steps{
                     sh 'mvn test'
-                          dir('demo/target/')
+                          dir('target/')
                     {
-                        stash name: 'build-war', includes: 'target/*.war'
+                        stash name: 'build-war', includes: '*.war'
                     }   
                     }
                
