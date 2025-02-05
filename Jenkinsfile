@@ -2,11 +2,13 @@ pipeline{
     agent{
         label 'node1'
     }
-
+    tools{
+        maven 'maven3'
+    }
     stages{
         stage('build'){
             steps{
-                echo "this build stage"
+                sh 'mvn clean package'
             }
         }
 
