@@ -5,7 +5,7 @@ pipeline{
     tools{
         maven 'maven3'
     }
-    parameters{
+    environment{
         name="amalk"
     }
     stages{
