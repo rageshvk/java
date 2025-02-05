@@ -18,8 +18,13 @@ pipeline{
         }
 
         stage('test'){
-            steps{
-                echo "this is test" 
+            parallel{
+                stage('test A'){
+                    echo "this is test A"
+                }
+                stage('test B'){
+                    echo "this is test B"
+                }
             }
         }
         stage('deploy'){
