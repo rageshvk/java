@@ -20,10 +20,16 @@ pipeline{
         stage('test'){
             parallel{
                 stage('test A'){
-                    echo "this is test A"
+                    steps{
+                       echo "this is test A"  
+                    }
+                   
                 }
                 stage('test B'){
-                    echo "this is test B"
+                    steps{
+                      echo "this is test B"  
+                    }
+                    
                 }
             }
         }
