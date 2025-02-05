@@ -5,6 +5,9 @@ pipeline{
     tools{
         maven 'maven3'
     }
+    parameters{
+        name="amalk"
+    }
     stages{
         stage('build'){
             steps{
@@ -21,7 +24,7 @@ pipeline{
             parallel{
                 stage('test A'){
                     steps{
-                       echo "this is test A"  
+                       echo "this is test A $name"  
                     }
                    
                 }
