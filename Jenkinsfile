@@ -55,6 +55,7 @@ pipeline{
                 sh """rm -rf stashed
                 mkdir stashed"""
                 unstash 'build-war'
+                sh 'mv *.war stashed/' 
                 sh 'pwd'
             }
         }
