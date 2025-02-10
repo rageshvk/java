@@ -44,7 +44,7 @@ pipeline{
             steps{
                 sh "mvn test"
                 dir('target/')
-                {
+                script{
                     stash name:'build-war',includes:'*.war'
                 }
             }
@@ -54,9 +54,9 @@ pipeline{
             steps{
                 sh """rm -rf stashed
                 mkdir stashed"""
-                unstash 'build-war'
+                script{unstash 'build-war'
                 sh 'mv build.war stashed/' 
-                sh 'pwd'
+                }
             }
         }
     }
