@@ -56,9 +56,10 @@ pipeline{
             when{expression{params.server=='prod'}}
             steps{
                 sh """rm -rf stashed
-                mkdir stashed"""
+                mkdir stashed
+                """
                 script{unstash 'build-war'
-                sh 'mv build.war stashed/' 
+                sh 'mv *.war stashed/' 
                 }
             }
         }
