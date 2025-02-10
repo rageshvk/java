@@ -19,6 +19,7 @@ pipeline{
                 sh 'mvn clean package -DskipTests=True'
                 script{
                     docker.image('nginx').pull()
+                    docker.image('nginx').run('-d -p 8090:80 --name web')
                 }
             }
             post{
