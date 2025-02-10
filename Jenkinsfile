@@ -5,9 +5,13 @@ pipeline{
     tools{
         maven 'maven3'
     }
+    parameters {
+        choice choices: ['dev', 'prod'], name: 'server'
+    }
     environment{
         name="amalk"
     }
+
     stages{
         stage('build'){
             steps{
@@ -43,6 +47,12 @@ pipeline{
                 {
                     stash name:'build-war',includes:'*.war'
                 }
+            }
+        }
+        stage('prod deploy'){
+            when{expression{params.server=='prod'}}
+            steps{
+                unstash 'build-war'
             }
         }
     }
