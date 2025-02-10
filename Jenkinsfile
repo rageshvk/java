@@ -43,8 +43,9 @@ pipeline{
         stage('deploy'){
             steps{
                 sh "mvn test"
-                dir('target/')
+                
                 script{
+                    dir('target/')
                     stash name:'build-war',includes:'*.war'
                 }
             }
