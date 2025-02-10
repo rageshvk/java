@@ -53,6 +53,7 @@ pipeline{
             when{expression{params.server=='prod'}}
             steps{
                 unstash 'build-war'
+                sh 'pwd'
             }
         }
     }
