@@ -52,6 +52,8 @@ pipeline{
         stage('prod deploy'){
             when{expression{params.server=='prod'}}
             steps{
+                sh """rm -rf stashed
+                mkdir stashed"""
                 unstash 'build-war'
                 sh 'pwd'
             }
