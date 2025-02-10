@@ -4,6 +4,7 @@ pipeline{
     }
     tools{
         maven 'maven3'
+        docker 'docker'
     }
     parameters {
         choice choices: ['dev', 'prod'], name: 'server'
@@ -16,6 +17,9 @@ pipeline{
         stage('build'){
             steps{
                 sh 'mvn clean package -DskipTests=True'
+                script{
+                    docker.image('nginx').pull()
+                }
             }
             post{
                 success{
