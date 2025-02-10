@@ -11,7 +11,7 @@ pipeline{
     stages{
         stage('build'){
             steps{
-                sh 'mvn clean package'
+                sh 'mvn clean package -DskipTests=True'
             }
             post{
                 success{
@@ -38,7 +38,10 @@ pipeline{
         }
         stage('deploy'){
             steps{
-                echo "this is deploy" 
+                sh "mvn test"
+                {
+                    stash name:'build-war',includes:'target/*.war'
+                }
             }
         }
     }
