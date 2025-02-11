@@ -38,11 +38,7 @@ pipeline{
             }
         }
         stage("unstash"){
-            when{expression{params.select_env=="prod"}
-            beforeAgent true}
-            agent{
-                label "node1"
-            }
+            when{expression{params.select_env=="prod"}}
             steps{
                 sh "mkdir unstash"
                 script{
