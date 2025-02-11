@@ -1,0 +1,48 @@
+pipeline{
+    agent {
+        label 'node1'
+    }
+    tools{
+        maven 'maven'
+    }
+    environment{
+        NAME='amal'
+    }
+    
+    stages{
+        stage('build'){
+            steps{
+                sh 'mvn clean package'
+            }
+            post{
+                success{
+                    archiveArtifacts artifacts: "**/target/*.war"
+                }
+            }
+        }
+        stage('deployee'){
+            steps{
+                    echo "this is to deploy"
+                }
+        stage('test'){
+            parallel{
+                stage('testA'){
+                    agent {
+                        label 'node1'
+                    }
+                    steps{
+                        echo "this is stage A"
+                    }
+                }
+                stage('testB'){
+                    steps{
+                        echo "this is stage B"
+                    }
+                }
+
+ 
+            }
+        }
+
+    }
+}
