@@ -44,8 +44,10 @@ pipeline{
                 label "node1"
             }
             steps{
-                sh "mkdir unstash"
+                
                 script{
+                    sh "rm -rf unstash"
+                    sh "mkdir unstash"
                     unstash "build-war"
                     sh "mv *.war unstash/"
                 }
