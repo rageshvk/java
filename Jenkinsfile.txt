@@ -5,6 +5,9 @@ pipeline{
     tools{
         maven 'maven'
     }
+    parameters {
+  choice choices: ['prod', 'dev'], name: 'server_env'
+}
     environment{
         NAME='amal'
     }
@@ -22,7 +25,7 @@ pipeline{
         }
         stage('deployee'){
             steps{
-                    echo "this is to deploy"
+                    echo "this is to ${params.server_env}"
                 }
         stage('test'){
             parallel{
