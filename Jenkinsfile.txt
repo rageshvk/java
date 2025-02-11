@@ -51,25 +51,25 @@ pipeline{
                 }
             }
         }
-        stage('test'){
-            parallel{
-                stage('testA'){
-                    agent {
-                        label 'node1'
-                    }
-                    steps{
-                        echo "this is stage A"
-                    }
-                }
-                stage('testB'){
-                    steps{
-                        echo "this is stage B"
-                    }
-                }
+        // stage('test'){
+        //     parallel{
+        //         stage('testA'){
+        //             agent {
+        //                 label 'node1'
+        //             }
+        //             steps{
+        //                 echo "this is stage A"
+        //             }
+        //         }
+        //         stage('testB'){
+        //             steps{
+        //                 echo "this is stage B"
+        //             }
+        //         }
 
  
-            }
-        }
+        //     }
+        // }
 
     }
     
