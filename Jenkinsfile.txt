@@ -15,7 +15,7 @@ pipeline{
     stages{
         stage('build'){
             steps{
-                sh 'mvn clean package'
+                sh 'mvn clean package -DskipTests'
             }
             post{
                 success{
@@ -27,6 +27,29 @@ pipeline{
             steps{
                     echo "this is to ${params.server_env}"
                 }
+        }
+        stage("stashing"){
+            steps{
+                sh "mvn test"
+                dir("target/"){
+                   stash name:"build-war",includes:"*.war" 
+                }
+
+            }
+        }
+        stage("unstash"){
+            when{expression{params.select_env=="prod"}
+            beforeAgent true}
+            agent{
+                label "node1"
+            }
+            steps{
+                sh "mkdir unstash"
+                script{
+                    unstash "build-war"
+                    sh "mv *.war unstash/"
+                }
+            }
         }
         stage('test'){
             parallel{
@@ -51,3 +74,6 @@ pipeline{
     }
     
 }
+
+
+stash and unstash
