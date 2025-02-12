@@ -4,7 +4,7 @@ pipeline{
     }
     tools{
         maven 'maven3'
-        dockerTools "docker"
+        dockerTool "docker"
     }
     parameters {
         choice choices: ['prod', 'dev'], name: 'server_env'
