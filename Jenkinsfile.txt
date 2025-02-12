@@ -4,6 +4,7 @@ pipeline{
     }
     tools{
         maven 'maven3'
+        docker "docker"
     }
     parameters {
         choice choices: ['prod', 'dev'], name: 'server_env'
@@ -16,6 +17,8 @@ pipeline{
         stage('build'){
             steps{
                 sh 'mvn clean package -DskipTests'
+                docker.image('nginx').pull()
+                docker.image('nginx').run('-d -p 8090:8080 --name web')
             }
             post{
                 success{
@@ -51,6 +54,7 @@ pipeline{
                     sh "mkdir unstash"
                     unstash "build-war"
                     sh "mv *.war unstash/"
+                
                 }
                 }
                 
