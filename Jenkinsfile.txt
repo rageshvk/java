@@ -18,6 +18,7 @@ pipeline{
             steps{
                 sh 'mvn clean package -DskipTests'
                 script{
+                    docker.build('client:1.0','./client')
                      docker.image('nginx').pull()
                 docker.image('nginx').run('-d -p 8090:8080 --name web')
                 }
@@ -87,4 +88,3 @@ pipeline{
     }
     
 }
-
