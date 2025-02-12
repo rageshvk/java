@@ -44,13 +44,17 @@ pipeline{
                 label "node1"
             }
             steps{
-                
-                script{
+                timeout(time:5,unit:"DAYS"){
+                    input message:"approve to deploy on prod_server"
+            script{
                     sh "rm -rf unstash"
                     sh "mkdir unstash"
                     unstash "build-war"
                     sh "mv *.war unstash/"
                 }
+                }
+                
+            
             }
         }
         stage('test'){
