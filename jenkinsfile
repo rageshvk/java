@@ -1,15 +1,16 @@
-pipelin{
-     agent{
-	label 'node1'
-     }
-     tools{
-	maven 'maven'
-     }
-     stages{
-	stage('build'){
-		steps{
-		  sh 'mvn clean package'
-		}
-	}
-     }
+pipeline {
+    agent {
+        label 'node1'
+    }
+    tools {
+        maven 'maven'
+    }
+    stages {
+        stage('build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+    }
 }
+
