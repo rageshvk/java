@@ -14,12 +14,6 @@ pipeline {
     }
 
     stages {
-        stage('Checkout Code') {
-            steps {
-                git 'https://github.com/rageshvk/java.git'  // Replace with your repo
-            }
-        }
-
         stage('Build') {
             steps {
                 sh 'mvn clean package'
