@@ -1,16 +1,50 @@
 pipeline {
     agent {
-        label 'node1'
+        label 'node1'  // Jenkins agent label
     }
+
     tools {
-        maven 'maven'
+        maven 'maven'  // Ensure Maven is installed in Jenkins
     }
+
+    environment {
+        IMAGE_NAME = "my-java-app"
+        CONTAINER_NAME = "tomcat-container"
+        DOCKERFILE_PATH = "."  // Adjust if Dockerfile is in a subdirectory
+    }
+
     stages {
-        stage('build') {
+        stage('Checkout Code') {
+            steps {
+                git 'https://github.com/your-repo/java-project.git'  // Replace with your repo
+            }
+        }
+
+        stage('Build') {
             steps {
                 sh 'mvn clean package'
             }
         }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t ${IMAGE_NAME} ${DOCKERFILE_PATH}'
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                script {
+                    // Stop & remove existing container if running
+                    sh 'docker stop ${CONTAINER_NAME} || true'
+                    sh 'docker rm ${CONTAINER_NAME} || true'
+
+                    // Run new container
+                    sh 'docker run -d --name ${CONTAINER_NAME} -p 8090:8080 ${IMAGE_NAME}'
+                }
+            }
+        }
     }
 }
+
 
