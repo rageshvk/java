@@ -8,3 +8,4 @@ EXPOSE 8090
 
 CMD ["catalina.sh", "run"]
 
+
